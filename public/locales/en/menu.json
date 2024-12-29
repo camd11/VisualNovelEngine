@@ -1,0 +1,92 @@
+{
+  "title_screen": {
+    "start": "Start Game",
+    "continue": "Continue",
+    "load": "Load Game",
+    "options": "Options",
+    "gallery": "Gallery",
+    "quit": "Quit"
+  },
+  "quick_menu": {
+    "auto": "Auto",
+    "auto_on": "Auto: ON",
+    "skip": "Skip",
+    "skip_on": "Skip: ON",
+    "backlog": "Backlog",
+    "backlog_on": "Backlog: ON",
+    "save": "Save",
+    "save_on": "Save: ON",
+    "options": "Options",
+    "options_on": "Options: ON",
+    "quit": "Quit"
+  },
+  "save_load": {
+    "title": "Save/Load",
+    "auto_save": "Auto Save",
+    "empty_slot": "Empty Slot",
+    "slot": "Slot {{number}}",
+    "save_to_slot": "Save to Slot {{number}}",
+    "description_placeholder": "Save description (optional)",
+    "create_save": "Create Save",
+    "load": "Load",
+    "delete": "Delete",
+    "select": "Select"
+  },
+  "backlog": {
+    "title": "Dialogue History",
+    "scene": "Scene: {{name}}",
+    "current": "Current",
+    "jump": "Jump",
+    "close": "Close"
+  },
+  "options": {
+    "title": "Options",
+    "text_settings": "Text Settings",
+    "text_speed": "Text Speed",
+    "text_speed_options": {
+      "slow": "Slow",
+      "normal": "Normal",
+      "fast": "Fast"
+    },
+    "auto_advance": "Auto-Advance Delay",
+    "auto_advance_options": {
+      "3s": "3 seconds",
+      "5s": "5 seconds",
+      "7s": "7 seconds"
+    },
+    "display": "Display Settings",
+    "window_opacity": "Window Opacity",
+    "opacity_options": {
+      "100": "100%",
+      "80": "80%",
+      "60": "60%"
+    },
+    "language": "Language",
+    "languages": {
+      "en": "English",
+      "ru": "Русский",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어"
+    }
+  },
+  "quit": {
+    "title": "Quit to Title?",
+    "message": "Any unsaved progress will be lost.",
+    "confirm": "Quit",
+    "cancel": "Cancel"
+  },
+  "debug": {
+    "title": "Debug Console",
+    "scene_jump": "Jump to Scene",
+    "scene_id": "Scene ID",
+    "jump": "Jump",
+    "flags": "Game Flags",
+    "add_flag": "Add Flag",
+    "flag_name": "Flag Name",
+    "flag_value": "Flag Value",
+    "set": "Set",
+    "delete": "Delete",
+    "close": "Close"
+  }
+}

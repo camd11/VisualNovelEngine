@@ -1,0 +1,15 @@
+{
+  "title": "ビジュアルノベルエンジン",
+  "loading": "読み込み中...",
+  "error": {
+    "scene_not_found": "エラー：シーンが見つかりません",
+    "save_failed": "セーブに失敗しました",
+    "load_failed": "ロードに失敗しました"
+  },
+  "confirmation": {
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK",
+    "cancel": "キャンセル"
+  }
+}

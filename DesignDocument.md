@@ -1,6 +1,6 @@
 Visual Novel Engine with AI-Driven Browser Testing
 
-(Updated Design & Specification Document)
+(Updated Design & Specification Document, including Gallery)
 Table of Contents
 
     Overview & Goals
@@ -11,6 +11,7 @@ Table of Contents
         Branching Story Logic & Scripting
         Scene & State Management
         UI/UX & Accessibility
+        Gallery / Extras Feature
         Built-in Debug Mode & Extensions
         Multi-Platform Export
         Steam Integration & Achievements
@@ -18,9 +19,11 @@ Table of Contents
     Technical Stack & Architecture
     Implementation Plan
         Phase 1: Basic Engine & CLI Tools
-        Phase 2: UI & Testing Integrations
-        Phase 3: Localization & Placeholder Assets
-        Phase 4: Final Polish (Voice, Art, Achievements)
+        Phase 2: Standard VN UI & Testing Integrations
+        Phase 3: Core Features Expansion & Debug Tools
+        Phase 4: Localization & Placeholder Assets
+        Phase 5: Final Polish (Voice, Art, Achievements, Gallery)
+        Phase 6: Launch & Post-Launch
     Appendices
         Example Data Schema
         Example React Component Structure
@@ -28,211 +31,266 @@ Table of Contents
 
 1. Overview & Goals
 
-The purpose of this document is to outline the design, features, and requirements of a React/JavaScript-based Visual Novel Engine that:
+This document outlines the design, features, and requirements of a React/JavaScript-based Visual Novel Engine that:
 
-    Runs in the web browser to facilitate AI-driven testing.
-    Allows late-stage integration of final assets (art, voice-over, music).
-    Supports multiple languages (English, Russian, Chinese, Japanese, Korean).
-    Provides standard visual novel UI elements as seen in typical commercial games (e.g., auto-advance, skip, backlog, quick save/load).
-    Integrates optional Steam achievements toward the end of development.
+    Runs in the browser for AI-driven testing (AI agents that parse screenshots and click UI elements).
+    Supports late-stage art and voice integration (placeholder-friendly).
+    Offers multi-language support (English, Russian, Chinese, Japanese, Korean).
+    Includes standard visual novel UI elements (auto, skip, backlog, quick save/load).
+    Integrates Steam achievements near the end of development.
+    Adds a Gallery (CG/Extras) feature, unlocking special images or other content.
 
 2. Core Requirements
 
     Cross-Browser Compatibility & AI Testing
-        Runs reliably in Chrome, Firefox, Edge, etc.
-        UI elements must be consistent and stable enough for screenshot-based or DOM-based AI testing.
+        The engine must be stable across major browsers (Chrome, Firefox, Edge) and maintain consistent DOM structures for AI-driven testing.
 
     Modular, Data-Driven Architecture
-        Store storyline text, branching, and flags in structured data (e.g., JSON).
-        Keep logic separate from visuals to reduce rework when adding assets.
+        Keep narrative content in structured data (e.g., JSON).
+        Minimize rewriting of logic when adding or changing assets.
 
     Placeholder-Friendly Asset Loading
-        Must gracefully handle missing or “dummy” art/audio.
-        Final art and voice lines can be plugged in at the end without major refactoring.
+        The game should run with missing art or audio, substituting placeholders to avoid broken flows.
+        Only integrate final assets late in development.
 
     Localization
-        Straightforward text substitution in external language files.
-        Handle multi-byte characters and potential line-break issues.
-
-    Steam Achievements (Late-Stage)
-        Plan for game triggers that correspond to achievements.
-        Use Steamworks integration or a similar framework at release.
+        External text files (JSON or similar) for multi-language support.
+        Runtime language switching is recommended.
 
     Standard Visual Novel UI
-        Includes a text box with speaker name, quick-access buttons (auto, skip, backlog, save, load, etc.), and a background/character sprite layer.
+        Familiar UI elements: text box, speaker name, quick menu (auto, skip, backlog, save, load, options, quit).
+
+    Steam Achievements
+        Plan achievements linked to story events or flags.
+        Late-stage integration with Steamworks (if distributing via Steam).
+
+    Gallery / Extras
+        An in-engine menu or “Extras” screen showing unlocked images (CG), music, or special content.
+        Unlock logic tied to story events or flags.
 
 3. Feature Specifications
 3.1 Standard Visual Novel UI
 
-Based on the reference screenshot and typical VN conventions, your engine should include:
-
     Dialogue Window & Speaker Name
-        A box at the bottom of the screen to display text.
-        Clear speaker name labeling (e.g., “Nathan,” “Player,” or “Narrator”).
-
-    Character Sprites & Background
-        Foreground character sprites that can change expressions.
-        Scene-appropriate background images.
-
-    Quick Interaction Menu/Bar (often displayed along the bottom edge):
-        Auto: Toggles auto-play of dialogue (text advances on its own).
-        Skip: Fast-forwards through dialogue (commonly for previously read text).
-        Backlog / Log: Displays recent dialogue history for the player to review.
-        Save: Opens or performs a manual save.
-        Load: Opens or performs a manual load.
-        Q.Save / Q.Load: Single-click quick-save/quick-load slots.
-        Options: Displays in-game settings (volume, text speed, display preferences, etc.).
-        Quit: Exits to the main menu or closes the game (in browser, it may just return to a start screen).
-
-    Optional Scene/Chapter Title Display
-        Helpful for debugging or letting the player know the current scene/chapter.
-
-Why This Matters
-
-    This UI layout is recognized by visual novel fans and ensures no confusion about how to save/load, fast-forward text, or check previous lines.
-    Providing these elements also allows your AI testing agent to easily identify UI controls.
+        Text box at screen bottom, speaker name display.
+    Character Sprites & Backgrounds
+        Sprites in the foreground; backgrounds for scene context.
+    Quick Menu
+        Auto: Automated text progression.
+        Skip: Fast-forward dialogue (especially for previously read content).
+        Backlog: Scrollable dialog history.
+        Save/Load/Q.Save/Q.Load: Manual saves, quick saves, etc.
+        Options: Volume, text speed, language switch, etc.
+        Quit: Exit or return to main menu.
 
 3.2 Save/Load & Autosave
 
     Manual Save
-        Accessible via the menu bar or a dedicated button.
-        Stores the current scene, flags, and position in the text.
-
+        UI button or menu to save current scene, flags, line index.
     Autosave
-        Trigger upon entering new scenes or selecting major choices.
-        Potentially keep a ring buffer of a few autosave slots.
-
+        Trigger on key events (scene changes, major choices).
     Quick Save/Load
-        One-button solution for short-term save states (very popular in VNs).
-        Overwrites a single slot each time.
+        Single-click slot for fast saving/loading progress.
 
 3.3 Branching Story Logic & Scripting
 
     Choice Management
-        Branches and conditions defined in JSON or a similar data structure.
-        Allows multiple next scenes or outcome variations.
-
-    Flags / Variables
-        Track states like “foundKey = true” or “relationshipPoints = 5.”
-        Persist across saves/loads and remain consistent for each route.
-
-    Conditional Text
-        If needed, dynamically show/hide lines based on flags (e.g., “if foundKey, show ‘You already picked up the key.’”).
+        JSON-defined choices lead to different scenes or outcomes.
+    Flags & Variables
+        Track progress, relationship points, item possession, etc.
+    Conditional Text & Scenes
+        Show or skip lines/scenes depending on flags.
 
 3.4 Scene & State Management
 
     Global State
-        Manage using React Context, Redux, or Zustand.
-        Store progress and variables (flags, relationship points, etc.).
-
+        Redux, Context, or Zustand to store flags and user progress.
     Transitions & Animations
-        Basic fade in/out for backgrounds and character sprites.
-        Possibly a brief text transition or slide effect for new text lines.
-
+        Simple fade or slide transitions for scene changes.
     Layering
-        Distinct layers for backgrounds, sprites, text box, and overlays (menus, notifications).
+        Manage backgrounds, character sprites, and UI overlays separately.
 
 3.5 UI/UX & Accessibility
 
     Text Speed & Skipping
-        Configurable text reveal speed.
-        Skip button for quickly advancing through read content.
-
+        Let the user control text reveal speed.
     Backlog
-        Scrollable list of recent dialogues, so players can review missed lines.
-        May also show speaker icons or timestamps if desired.
-
-    Accessibility Options
-        Adjustable font size or color contrast.
-        Screen-reader compatibility if feasible.
-
+        Show recent lines and speakers, possibly re-voicing them (optional).
+    Accessibility
+        Adjustable font size, high-contrast mode, screen-reader friendly (if feasible).
     Mobile-Friendly
-        Responsive layout for smaller screens, ensuring buttons remain tap-friendly.
+        Responsive layout for smaller screens.
 
-3.6 Built-in Debug Mode & Extensions
+3.6 Gallery / Extras Feature
+
+    Purpose
+        Allows players to revisit unlocked CG images, event artwork, or music.
+    Unlock Logic
+        Each CG or special artwork is linked to a specific story event or flag.
+        Once the player encounters/unlocks it, it becomes available in the Gallery.
+    UI & Navigation
+        A main menu or in-game “Extras” section.
+        Display thumbnails for unlocked items; locked ones show a placeholder or silhouette.
+        Clicking a thumbnail opens a full-size view or plays a music track.
+    Data Structure
+        A separate JSON (e.g., gallery.json) linking CG IDs to unlock flags:
+
+        {
+          "galleryItems": [
+            {
+              "id": "cg1",
+              "name": "Sunset Overlook",
+              "imagePath": "/assets/cg/sunset.png",
+              "unlockFlag": "sawSunsetScene"
+            }
+          ]
+        }
+
+    Save/Load Integration
+        Gallery unlocks persist in global flags or a dedicated gallery state.
+        Remains unlocked even if the player loads a previous save.
+
+3.7 Built-in Debug Mode & Extensions
 
     Dev Console / Overlay
-        Enable jumping to specific scenes, toggling flags, or simulating events.
-        Display log messages or errors for quick debugging.
-
+        Jump to scenes, set flags, view logs for debugging.
     Plugin Architecture
-        Hooks for adding custom features or mini-games without rewriting core code.
+        Expose hooks for custom modules or future expansions without rewriting core files.
 
-3.7 Multi-Platform Export
+3.8 Multi-Platform Export
 
     Web Distribution
-        Primary target for AI-driven testing (runs in a standard browser).
-    Desktop Wrappers (Optional)
-        Electron or similar, for Windows/macOS/Linux distribution.
-    Steam Integration
-        If packaging with Electron, integrate Steamworks SDK for achievements or overlay.
+        Primary build for easy user/AI testing in browsers.
+    Desktop Wrappers
+        Electron or similar for Windows/macOS/Linux.
+    Mobile Wrappers (Optional)
+        Capacitor, Cordova, or React Native for mobile apps.
 
-3.8 Steam Integration & Achievements
+3.9 Steam Integration & Achievements
 
     Achievement Triggers
-        Maintain a config mapping story events to achievements.
+        Map story events or flags to Steam achievements.
     Steamworks SDK
-        Connect achievements after key scenes/choices.
-        Possible in an Electron build or via native bindings.
+        Integrate once near completion.
+        Show achievement pop-ups (in-game or Steam Overlay).
 
 4. AI-Driven Testing Workflow
 
-    Consistent DOM Structure & Selectors
-        Use data-testid or consistent classes to label the quick menu buttons (auto, skip, backlog, save, load, etc.).
-        Keep the layout stable for screenshot-based AI.
-
-    Screenshot Markers
-        Display scene IDs or speaker names in a consistent location to help the AI confirm it’s in the correct place.
-
+    Consistent DOM Structure
+        Use stable classes/IDs for UI elements (auto, skip, backlog, save, load, etc.).
+    Screenshot-Based Validation
+        Display scene IDs or speaker names in consistent locations.
+        Keep layout stable so the AI can parse screenshot differences.
     Fast-Forward / Dev-Skip Mode
-        Greatly accelerates text display to let the AI traverse full routes quickly.
-
-    Error & Exception Reporting
-        Clear console logs or debug overlay messages for missing assets or script references.
+        Greatly expedite text progression, letting the AI test multiple branches quickly.
+    Error & Exception Handling
+        Show missing assets or script references in a debug overlay or console log.
 
 5. Technical Stack & Architecture
 
-    React for UI
-        Component-based approach for dialogue boxes, menus, overlays.
-
+    React
+        Component-based UI for dialogue, menus, overlays.
     State Management
-        Redux, Context + Reducers, or Zustand to track game flags and route progress.
-
+        Redux, Context + Reducers, or Zustand for flags and progress.
     Localization
-        Utilize react-i18next or a similar library for multi-language text.
-        Keep text in external JSON files (e.g., en.json, ru.json, zh.json, ja.json, ko.json).
-
+        react-i18next or a similar library for easy multi-language text swapping.
     Data-Driven Scripting
-        Scenes, dialogues, and choices in JSON or YAML.
-        A manager interprets that data to render the right text and transition logic.
-
-    Plugins & Extensions
-        Expose a small API for future expansions (custom UI elements, additional scenes, minigames).
+        Scenes and branching stored in JSON.
+        A parser/manager interprets the current state, loads dialogue, and transitions accordingly.
+    Gallery Data
+        A separate JSON or combined with story data, indicating CG unlock conditions.
+    Plugin/Extension API
+        Hooks for custom code or mini-games, if needed.
 
 6. Implementation Plan
 Phase 1: Basic Engine & CLI Tools
 
-    Project Setup with React, bundler (Webpack/Vite), etc.
-    Define JSON schema for dialogues, scenes, and branching.
-    Create a minimal text display and “next” button to confirm data loading.
+    Project Setup: Initialize React project, bundler config, Git repository.
+    Data Structures: Define JSON schema for dialogues/choices.
+    Minimal Scene Navigation: Basic <DialogueBox> and “next” button for a test scene.
 
-Phase 2: UI & Testing Integrations
+Deliverables
 
-    Implement the main VN UI (dialogue box, quick menu with placeholders for auto, skip, backlog, save, load, options).
-    Introduce state management (Redux/Context) for flags.
-    Enable AI-driven smoke tests for basic navigation.
+    Base project folder structure
+    A sample scenes.json
+    Minimal UI to display and advance text
 
-Phase 3: Localization & Placeholder Assets
+Phase 2: Standard VN UI & Testing Integrations
 
-    Integrate react-i18next or similar.
-    Provide placeholder images/voice references for testing, verifying they load or fall back gracefully.
-    Allow runtime language switching (English, Russian, Chinese, Japanese, Korean).
+    Dialogue Box & Quick Menu: Add standard buttons (auto, skip, backlog, save/load, options, quit).
+    Branching & State: Implement choice-based navigation and a global store for flags.
+    Skeleton Save/Load: Outline how game state is saved/loaded (local storage or memory).
+    AI-Friendly Markup: Add data-testid attributes for each UI element.
 
-Phase 4: Final Polish (Voice, Art, Achievements)
+Deliverables
 
-    Replace placeholders with final art and voice assets.
-    Steam achievements: Hook achievements into key story events if distributing on Steam.
-    Debugging & Performance: Final pass to optimize loading times, memory usage, and fix any lingering issues.
+    Proper dialogue window with speaker name
+    Quick menu bar (auto, skip, backlog, etc.)
+    Basic branching (choices lead to different scenes)
+    DOM consistency for AI testing
+
+Phase 3: Core Features Expansion & Debug Tools
+
+    Full Save/Load: Multi-slot saves, autosave triggers, confirm load overwrites.
+    Backlog/History: Modal or panel showing recent text lines.
+    Debug/Dev Console: Jump to scenes, set flags, view logs.
+    Scene Transitions: Fades or slides for scene/sprite changes.
+
+Deliverables
+
+    Fully functional save/load system
+    Backlog with scrollable text history
+    Developer overlay for QA
+    Basic animations for UI/scene transitions
+
+Phase 4: Localization & Placeholder Assets
+
+    Localization: Integrate react-i18next (or similar) with external locale files (en.json, ru.json, etc.).
+    Runtime Language Switching: A dropdown or menu option to switch languages mid-game.
+    Placeholder Handling: Confirm that missing images/audio use default placeholders.
+    Refine AI-Testing Hooks: Ensure stable DOM for multi-language tests.
+
+Deliverables
+
+    Multi-language UI & dialogue with live switching
+    Robust placeholder logic for images and audio
+    Polished AI-friendly environment with stable selectors
+
+Phase 5: Final Polish (Voice, Art, Achievements, Gallery)
+
+    Asset Integration: Replace placeholders with final backgrounds, sprites, CGs, music, voice lines.
+    Steam Achievements (Optional):
+        Integrate Steamworks in Electron or native wrapper.
+        Map flags/events to achievements, show pop-ups.
+    Gallery / Extras Menu:
+        Add main menu or in-game menu for CG Gallery.
+        Implement unlock logic (flags) for each CG/music track.
+        Display locked/unlocked states.
+    Advanced AI/QA Testing:
+        Ensure the AI can systematically unlock and check items in the Gallery.
+        Validate all achievements trigger correctly.
+
+Deliverables
+
+    Complete visual and audio assets integrated
+    Steam achievements (if distributing on Steam)
+    Functional CG Gallery with locked/unlocked states
+    Thorough AI testing coverage on final content
+
+Phase 6: Launch & Post-Launch
+
+    Production Build: Optimize, minify, and bundle for web or Electron.
+    Final QA & Bug Fixes: Last pass for narrative consistency and technical stability.
+    Release & Post-Launch Support:
+        Deploy to web or Steam.
+        Address any post-launch bugs or feedback.
+        Plan expansions or DLC (if relevant).
+
+Deliverables
+
+    Official release candidate build
+    Documentation on how to add new content, localize more languages, or patch bugs
+    Post-launch roadmap or DLC plan (if any)
 
 7. Appendices
 7.1 Example Data Schema
@@ -240,19 +298,30 @@ Phase 4: Final Polish (Voice, Art, Achievements)
 {
   "scenes": [
     {
-      "id": "class_intro",
+      "id": "prologue",
       "dialogues": [
         {
-          "speaker": "Nathan",
-          "text": "That was a wild guess, I admit."
+          "speaker": "Narrator",
+          "text": "A new day dawns..."
         }
       ],
       "choices": [
         {
-          "text": "Continue",
-          "nextScene": "hallway"
+          "text": "Open your eyes",
+          "nextScene": "intro_scene"
         }
       ]
+    }
+  ]
+}
+
+{
+  "galleryItems": [
+    {
+      "id": "cg1",
+      "name": "Sunset Overlook",
+      "imagePath": "/assets/cg/sunset.png",
+      "unlockFlag": "sawSunsetScene"
     }
   ]
 }
@@ -262,14 +331,16 @@ Phase 4: Final Polish (Voice, Art, Achievements)
 src/
  ┣ components/
  ┃ ┣ DialogueBox.js
- ┃ ┣ QuickMenu.js  // auto, skip, backlog, etc.
+ ┃ ┣ QuickMenu.js        // auto, skip, backlog, etc.
  ┃ ┣ Backlog.js
  ┃ ┣ SaveLoadMenu.js
  ┃ ┣ OptionsMenu.js
+ ┃ ┣ Gallery.js          // For viewing CGs
  ┃ ┣ SceneManager.js
  ┃ ┗ DebugConsole.js
  ┣ data/
  ┃ ┣ scenes.json
+ ┃ ┗ gallery.json
  ┣ locales/
  ┃ ┣ en.json
  ┃ ┣ ru.json
@@ -284,17 +355,20 @@ src/
 
 7.3 Example Directory Layout
 
-    /components: All UI elements—dialogue windows, quick menu, backlog, etc.
-    /data: Contains scene scripts and branching logic.
-    /locales: Translation files.
-    /store: State management (Redux, etc.).
-    /assets: (Eventually) holds final images, audio, voice lines, music.
+    /components: All UI elements (dialogue windows, quick menu, backlog, gallery, debug tools).
+    /data: Scene scripts (scenes.json), plus gallery.json for CG references.
+    /locales: Translation files for each supported language.
+    /store: State management code.
+    /assets: Placeholder or final images, audio, music.
 
 Conclusion
 
-By integrating the standard visual novel UI elements (auto, skip, backlog, save/load, quick save/load, options, quit) as outlined above, your engine will:
+This updated design document ensures your React-based Visual Novel Engine:
 
-    Meet player expectations for a polished, accessible visual novel.
-    Ensure compatibility with AI-driven browser testing, thanks to consistent DOM structures for each button/control.
-    Remain flexible for late-stage asset integration and multi-language support.
-    Provide a solid foundation for optional Steam achievements or platform-specific features.
+    Implements a familiar VN UI (auto, skip, backlog, etc.) right from the early phases.
+    Supports multi-language content with placeholders for late-stage art or audio.
+    Includes a Gallery/Extras feature so players can unlock and revisit CG images (and potentially music) they’ve discovered.
+    Facilitates AI-driven browser testing by providing stable, labeled UI elements and consistent layouts.
+    Lays groundwork for optional Steam achievements and multi-platform builds (web, desktop, mobile).
+
+By following the phased Implementation Plan, you’ll deliver a robust, testable, and expandable visual novel engine with all the classic features that players expect—from the opening lines of dialogue to the final CG unlock in the Gallery.

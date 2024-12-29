@@ -1,0 +1,23 @@
+{
+  "prologue": {
+    "dialogues": [
+      {
+        "speaker": "旁白",
+        "text": "新的一天开始了..."
+      }
+    ],
+    "choices": [
+      {
+        "text": "睁开眼睛",
+        "nextScene": "intro_scene"
+      }
+    ]
+  },
+  "placeholders": {
+    "missing_speaker": "???",
+    "missing_text": "[未找到文本]",
+    "missing_choice": "[选项不可用]",
+    "loading_dialogue": "加载对话中...",
+    "error_loading": "加载对话出错"
+  }
+}

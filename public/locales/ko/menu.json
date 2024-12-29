@@ -1,0 +1,92 @@
+{
+  "title_screen": {
+    "start": "게임 시작",
+    "continue": "이어하기",
+    "load": "불러오기",
+    "options": "설정",
+    "gallery": "갤러리",
+    "quit": "종료"
+  },
+  "quick_menu": {
+    "auto": "자동",
+    "auto_on": "자동: 켜짐",
+    "skip": "스킵",
+    "skip_on": "스킵: 켜짐",
+    "backlog": "대화록",
+    "backlog_on": "대화록: 켜짐",
+    "save": "저장",
+    "save_on": "저장: 켜짐",
+    "options": "설정",
+    "options_on": "설정: 켜짐",
+    "quit": "종료"
+  },
+  "save_load": {
+    "title": "저장/불러오기",
+    "auto_save": "자동 저장",
+    "empty_slot": "빈 슬롯",
+    "slot": "슬롯 {{number}}",
+    "save_to_slot": "슬롯 {{number}}에 저장",
+    "description_placeholder": "저장 설명 (선택사항)",
+    "create_save": "저장 생성",
+    "load": "불러오기",
+    "delete": "삭제",
+    "select": "선택"
+  },
+  "backlog": {
+    "title": "대화 기록",
+    "scene": "장면: {{name}}",
+    "current": "현재",
+    "jump": "이동",
+    "close": "닫기"
+  },
+  "options": {
+    "title": "설정",
+    "text_settings": "텍스트 설정",
+    "text_speed": "텍스트 속도",
+    "text_speed_options": {
+      "slow": "느림",
+      "normal": "보통",
+      "fast": "빠름"
+    },
+    "auto_advance": "자동 진행 대기 시간",
+    "auto_advance_options": {
+      "3s": "3초",
+      "5s": "5초",
+      "7s": "7초"
+    },
+    "display": "화면 설정",
+    "window_opacity": "창 투명도",
+    "opacity_options": {
+      "100": "100%",
+      "80": "80%",
+      "60": "60%"
+    },
+    "language": "언어",
+    "languages": {
+      "en": "English",
+      "ru": "Русский",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어"
+    }
+  },
+  "quit": {
+    "title": "타이틀로 돌아가시겠습니까?",
+    "message": "저장하지 않은 진행 상황은 사라집니다.",
+    "confirm": "종료",
+    "cancel": "취소"
+  },
+  "debug": {
+    "title": "디버그 콘솔",
+    "scene_jump": "장면 이동",
+    "scene_id": "장면 ID",
+    "jump": "이동",
+    "flags": "게임 플래그",
+    "add_flag": "플래그 추가",
+    "flag_name": "플래그 이름",
+    "flag_value": "플래그 값",
+    "set": "설정",
+    "delete": "삭제",
+    "close": "닫기"
+  }
+}

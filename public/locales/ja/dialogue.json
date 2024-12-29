@@ -1,0 +1,23 @@
+{
+  "prologue": {
+    "dialogues": [
+      {
+        "speaker": "ナレーター",
+        "text": "新しい一日が始まる..."
+      }
+    ],
+    "choices": [
+      {
+        "text": "目を開ける",
+        "nextScene": "intro_scene"
+      }
+    ]
+  },
+  "placeholders": {
+    "missing_speaker": "???",
+    "missing_text": "[テキストが見つかりません]",
+    "missing_choice": "[選択肢が利用できません]",
+    "loading_dialogue": "ダイアログを読み込み中...",
+    "error_loading": "ダイアログの読み込みに失敗しました"
+  }
+}

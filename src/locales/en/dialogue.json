@@ -1,0 +1,23 @@
+{
+  "prologue": {
+    "dialogues": [
+      {
+        "speaker": "Narrator",
+        "text": "A new day dawns..."
+      }
+    ],
+    "choices": [
+      {
+        "text": "Open your eyes",
+        "nextScene": "intro_scene"
+      }
+    ]
+  },
+  "placeholders": {
+    "missing_speaker": "???",
+    "missing_text": "[Text not found]",
+    "missing_choice": "[Choice not available]",
+    "loading_dialogue": "Loading dialogue...",
+    "error_loading": "Error loading dialogue"
+  }
+}

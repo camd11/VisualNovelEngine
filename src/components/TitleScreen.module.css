@@ -1,0 +1,95 @@
+.titleScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+}
+
+.content {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.title {
+  color: #ffd700;
+  font-size: 3em;
+  margin-bottom: 60px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.menuButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.menuButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.languageButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.languageButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.languageButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.languageButton.active {
+  background-color: rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.version {
+  color: #666;
+  font-size: 0.9em;
+}

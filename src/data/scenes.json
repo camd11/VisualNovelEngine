@@ -1,0 +1,205 @@
+{
+  "scenes": [
+    {
+      "id": "prologue",
+      "dialogues": [
+        {
+          "speaker": "Narrator",
+          "text": "A new day dawns..."
+        },
+        {
+          "speaker": "???",
+          "text": "Hey, wake up!"
+        },
+        {
+          "speaker": "You",
+          "text": "...Where am I?"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Open your eyes",
+          "nextScene": "intro_scene"
+        },
+        {
+          "text": "Keep them closed",
+          "nextScene": "dream_scene"
+        }
+      ]
+    },
+    {
+      "id": "intro_scene",
+      "dialogues": [
+        {
+          "speaker": "Narrator",
+          "text": "You open your eyes to find yourself in a dimly lit room."
+        },
+        {
+          "speaker": "???",
+          "text": "Finally! I've been trying to wake you for ages."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "As your eyes adjust to the dim light, you notice a figure standing by the window."
+        },
+        {
+          "speaker": "???",
+          "text": "Don't worry, you're safe here. Though I imagine you have many questions."
+        },
+        {
+          "speaker": "You",
+          "text": "Who are you? And how did I get here?"
+        },
+        {
+          "speaker": "Mysterious Figure",
+          "text": "My name is Sarah. I found you unconscious in the forest last night."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "You were running a high fever, so I brought you to my cabin."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "Sarah moves away from the window, her silhouette becoming clearer."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Do you remember anything about what happened?"
+        },
+        {
+          "speaker": "You",
+          "text": "Everything's a blur... I remember running, but I don't know from what."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "That's not uncommon. The forest has that effect on people sometimes."
+        }
+      ],
+      "choices": [
+        {
+          "text": "Ask about the forest",
+          "nextScene": "forest_scene"
+        },
+        {
+          "text": "Ask about Sarah",
+          "nextScene": "sarah_scene"
+        }
+      ]
+    },
+    {
+      "id": "dream_scene",
+      "dialogues": [
+        {
+          "speaker": "Narrator",
+          "text": "You decide to keep your eyes closed, drifting back into the dream..."
+        },
+        {
+          "speaker": "Dream Voice",
+          "text": "Perhaps it's better this way..."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "The darkness around you begins to shift and swirl."
+        },
+        {
+          "speaker": "Dream Voice",
+          "text": "In dreams, we sometimes find truths that reality conceals."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "Shapes begin to form in the darkness, memories perhaps..."
+        },
+        {
+          "speaker": "Dream Voice",
+          "text": "Do you remember now? Why you were running?"
+        },
+        {
+          "speaker": "You",
+          "text": "There was... something in the forest..."
+        },
+        {
+          "speaker": "Dream Voice",
+          "text": "Yes... the forest holds many secrets."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "The darkness pulses with an otherworldly energy."
+        },
+        {
+          "speaker": "Dream Voice",
+          "text": "But are you ready to remember the truth?"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Try to wake up",
+          "nextScene": "intro_scene"
+        },
+        {
+          "text": "Delve deeper into the dream",
+          "nextScene": "deep_dream_scene"
+        }
+      ]
+    },
+    {
+      "id": "forest_scene",
+      "dialogues": [
+        {
+          "speaker": "You",
+          "text": "What did you mean about the forest having that effect on people?"
+        },
+        {
+          "speaker": "Sarah",
+          "text": "This isn't an ordinary forest. Strange things happen here."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Time moves differently among the trees. Memories become... fluid."
+        },
+        {
+          "speaker": "Narrator",
+          "text": "Sarah's expression grows serious as she gazes out the window."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "You're not the first person I've found wandering these woods."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "And I doubt you'll be the last."
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "sarah_scene",
+      "dialogues": [
+        {
+          "speaker": "You",
+          "text": "Why do you live out here alone?"
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Who says I'm alone?"
+        },
+        {
+          "speaker": "Narrator",
+          "text": "A knowing smile crosses her face."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "The forest is full of life, if you know where to look."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "And sometimes, it brings me visitors who need help."
+        },
+        {
+          "speaker": "Sarah",
+          "text": "Like you."
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

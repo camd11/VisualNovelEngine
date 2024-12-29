@@ -1,0 +1,23 @@
+{
+  "prologue": {
+    "dialogues": [
+      {
+        "speaker": "Рассказчик",
+        "text": "Начинается новый день..."
+      }
+    ],
+    "choices": [
+      {
+        "text": "Открыть глаза",
+        "nextScene": "intro_scene"
+      }
+    ]
+  },
+  "placeholders": {
+    "missing_speaker": "???",
+    "missing_text": "[Текст не найден]",
+    "missing_choice": "[Выбор недоступен]",
+    "loading_dialogue": "Загрузка диалога...",
+    "error_loading": "Ошибка загрузки диалога"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "视觉小说引擎",
+  "loading": "加载中...",
+  "error": {
+    "scene_not_found": "错误：场景未找到",
+    "save_failed": "保存游戏失败",
+    "load_failed": "加载游戏失败"
+  },
+  "confirmation": {
+    "yes": "是",
+    "no": "否",
+    "ok": "确定",
+    "cancel": "取消"
+  }
+}

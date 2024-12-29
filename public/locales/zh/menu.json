@@ -1,0 +1,92 @@
+{
+  "title_screen": {
+    "start": "开始游戏",
+    "continue": "继续",
+    "load": "读取游戏",
+    "options": "设置",
+    "gallery": "图库",
+    "quit": "退出"
+  },
+  "quick_menu": {
+    "auto": "自动",
+    "auto_on": "自动：开",
+    "skip": "跳过",
+    "skip_on": "跳过：开",
+    "backlog": "历史",
+    "backlog_on": "历史：开",
+    "save": "保存",
+    "save_on": "保存：开",
+    "options": "设置",
+    "options_on": "设置：开",
+    "quit": "退出"
+  },
+  "save_load": {
+    "title": "保存/读取",
+    "auto_save": "自动保存",
+    "empty_slot": "空存档",
+    "slot": "存档 {{number}}",
+    "save_to_slot": "保存到存档 {{number}}",
+    "description_placeholder": "存档描述（可选）",
+    "create_save": "创建存档",
+    "load": "读取",
+    "delete": "删除",
+    "select": "选择"
+  },
+  "backlog": {
+    "title": "对话历史",
+    "scene": "场景：{{name}}",
+    "current": "当前",
+    "jump": "跳转",
+    "close": "关闭"
+  },
+  "options": {
+    "title": "设置",
+    "text_settings": "文本设置",
+    "text_speed": "文本速度",
+    "text_speed_options": {
+      "slow": "慢",
+      "normal": "正常",
+      "fast": "快"
+    },
+    "auto_advance": "自动前进延迟",
+    "auto_advance_options": {
+      "3s": "3秒",
+      "5s": "5秒",
+      "7s": "7秒"
+    },
+    "display": "显示设置",
+    "window_opacity": "窗口透明度",
+    "opacity_options": {
+      "100": "100%",
+      "80": "80%",
+      "60": "60%"
+    },
+    "language": "语言",
+    "languages": {
+      "en": "English",
+      "ru": "Русский",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어"
+    }
+  },
+  "quit": {
+    "title": "返回标题画面？",
+    "message": "未保存的进度将会丢失。",
+    "confirm": "退出",
+    "cancel": "取消"
+  },
+  "debug": {
+    "title": "调试控制台",
+    "scene_jump": "跳转到场景",
+    "scene_id": "场景ID",
+    "jump": "跳转",
+    "flags": "游戏标记",
+    "add_flag": "添加标记",
+    "flag_name": "标记名称",
+    "flag_value": "标记值",
+    "set": "设置",
+    "delete": "删除",
+    "close": "关闭"
+  }
+}

@@ -1,0 +1,511 @@
+.dialogueBox {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.speaker {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffd700;
+}
+
+.text {
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choices button {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.choices button:hover {
+  background-color: #666;
+}
+
+.nextButton {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nextButton:hover:not(:disabled) {
+  background-color: #666;
+}
+
+.nextButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quickMenu {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  display: flex;
+  gap: 10px;
+}
+
+/* Quick Menu Buttons */
+.autoButton,
+.skipButton,
+.backlogButton,
+.saveButton,
+.optionsButton,
+.quitButton {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9em;
+}
+
+.autoButton:hover,
+.skipButton:hover,
+.backlogButton:hover,
+.saveButton:hover,
+.optionsButton:hover {
+  background-color: #666;
+}
+
+.autoButton.active { background-color: #007bff; }
+.autoButton.active:hover { background-color: #0056b3; }
+
+.skipButton.active { background-color: #dc3545; }
+.skipButton.active:hover { background-color: #c82333; }
+
+.backlogButton.active { background-color: #28a745; }
+.backlogButton.active:hover { background-color: #218838; }
+
+.saveButton.active { background-color: #17a2b8; }
+.saveButton.active:hover { background-color: #138496; }
+
+.optionsButton.active { background-color: #6c757d; }
+.optionsButton.active:hover { background-color: #5a6268; }
+
+.quitButton:hover { background-color: #dc3545; }
+
+.debugButton {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9em;
+}
+
+.debugButton:hover {
+  background-color: #666;
+}
+
+.debugButton.active {
+  background-color: #6610f2;
+}
+
+.debugButton.active:hover {
+  background-color: #520dc2;
+}
+
+/* Overlays */
+.backlogOverlay,
+.saveOverlay,
+.optionsOverlay,
+.quitOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Save System Styles */
+.saveContent {
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.saveForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.saveDescription {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.saveDescription:focus {
+  outline: none;
+  border-color: #17a2b8;
+}
+
+.saveList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saveEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.saveEntry.selected {
+  background-color: rgba(23, 162, 184, 0.2);
+  border: 1px solid #17a2b8;
+}
+
+.saveEntry:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.saveInfo {
+  flex: 1;
+  color: white;
+}
+
+.saveInfo > div:first-child {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.saveInfo > div:nth-child(2) {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-bottom: 3px;
+}
+
+.saveDescription {
+  font-size: 0.9em;
+  color: #17a2b8;
+  font-style: italic;
+}
+
+.emptySlot {
+  color: #666;
+  font-style: italic;
+}
+
+.saveActions {
+  display: flex;
+  gap: 8px;
+}
+
+.loadButton,
+.deleteButton,
+.selectButton {
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.9em;
+}
+
+.loadButton {
+  background-color: #007bff;
+}
+
+.loadButton:hover {
+  background-color: #0056b3;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.selectButton {
+  background-color: #28a745;
+}
+
+.selectButton:hover {
+  background-color: #218838;
+}
+
+/* Backlog Styles */
+.backlogContent {
+  width: 100%;
+  max-width: 800px;
+  height: 80vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.backlogHeader {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backlogHeader h2 {
+  color: #ffd700;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.closeButton {
+  background-color: #4a4a4a;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #666;
+}
+
+.backlogScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.sceneMarker {
+  background-color: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.backlogEntry {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.backlogSpeaker {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.backlogText {
+  color: white;
+  line-height: 1.5;
+}
+
+.jumpButton {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.9em;
+}
+
+.jumpButton:hover {
+  background-color: #0056b3;
+}
+
+.currentMarker {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #28a745;
+  font-style: italic;
+}
+
+/* Options Menu Styles */
+.optionsContent {
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.optionsTitle {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #ffd700;
+  text-align: center;
+}
+
+.optionsSection {
+  margin-bottom: 30px;
+}
+
+.optionsSection h3 {
+  color: #ffd700;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.optionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.optionItem label {
+  font-size: 1em;
+  color: white;
+}
+
+.optionItem select {
+  background-color: #4a4a4a;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.optionItem select:disabled {
+  background-color: #333;
+}
+
+.optionsNote {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Quit Dialog Styles */
+.quitContent {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.quitTitle {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  color: #ffd700;
+}
+
+.quitMessage {
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+.quitActions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.quitConfirmButton,
+.quitCancelButton {
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1em;
+}
+
+.quitConfirmButton {
+  background-color: #dc3545;
+}
+
+.quitConfirmButton:hover {
+  background-color: #c82333;
+}
+
+.quitCancelButton {
+  background-color: #6c757d;
+}
+
+.quitCancelButton:hover {
+  background-color: #5a6268;
+}

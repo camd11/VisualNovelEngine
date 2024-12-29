@@ -1,0 +1,15 @@
+{
+  "title": "Visual Novel Engine",
+  "loading": "Loading...",
+  "error": {
+    "scene_not_found": "Error: Scene not found",
+    "save_failed": "Failed to save game",
+    "load_failed": "Failed to load game"
+  },
+  "confirmation": {
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "cancel": "Cancel"
+  }
+}

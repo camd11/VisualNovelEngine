@@ -1,210 +1,217 @@
-Implementation Plan
+Updated Implementation Plan
 Phase 1: Project Foundation & Core Systems
 Goals
 
     Project Setup & Environment
-        Create a new React project (using a bundler like Vite or Webpack).
-        Configure package.json scripts for development and production builds.
-        Initialize a Git repository for version control.
+        Initialize the React project with a bundler (Vite or Webpack).
+        Create a Git repository for version control.
+        Set up essential scripts (build, start, test).
 
-    Core Data Structures
-        Define a JSON (or YAML) schema for scenes, dialogues, choices, and flags.
-        Draft a small “demo script” to confirm data loading (e.g., one or two scenes, minimal branching).
+    Data Structures
+        Define the JSON (or YAML) schema for scenes, dialogues, and choices.
+        Create a minimal “demo script” (e.g., 1–2 scenes) to confirm data loading works.
 
     Minimal Rendering & Navigation
-        Build a basic component (e.g., <DialogueBox>) to display text from the JSON data.
-        Implement a “Next” button or key-press to move forward through the dialogues in sequence.
+        Build a basic <DialogueBox> to display text from the JSON.
+        Implement a simple “next” button (or key-press) to advance through dialogues in sequence.
 
 Deliverables
 
-    React Project Skeleton: Folder structure, config files, minimal README.
-    Data Schema: A simple JSON file (e.g., scenes.json) with a few demo scenes.
-    Initial Scene Navigation: Ability to progress through a short sequence of lines.
+    Base Project: Folder structure, configuration files, minimal README.
+    Data Schema: A small scenes.json with a few lines of dialogue.
+    Initial UI: A bare-bones text display and simple navigation.
 
 Testing & Verification
 
-    Manual Testing: Developer opens the local dev server in a browser and confirms text displays and advances.
-    Basic AI Testing (Optional): If the AI environment is ready, the agent can click through the single scene to verify no crashes or errors occur.
+    Manual Testing: Load the dev server, confirm text displays and advances.
+    (Optional) AI Smoke Test: If the AI environment is ready, have it click “next” to verify no crashes.
 
-Phase 2: Standard VN UI & State Management
+Phase 2: Standard VN UI & Testing Integrations
 Goals
 
     UI Implementation
-        Add a dialogue box (with speaker name) at the bottom of the screen.
-        Create a Quick Menu bar for the following buttons:
-            Auto: Toggles auto-play of text.
-            Skip: Fast-forwards dialogue (for testing, can simply jump through lines).
-            Backlog: Button that opens a backlog/history of recent lines.
-            Save / Load / Q.Save / Q.Load (UI elements, placeholders for now).
-            Options: Placeholder button or modal for future settings.
-            Quit: Return to main menu or a simple “Are you sure?” prompt in the browser.
-        Ensure each UI control has stable CSS classes or data-testid attributes for AI interaction.
+        Add a dialogue box that includes speaker names.
+        Create a Quick Menu with buttons for:
+            Auto (auto-advance text)
+            Skip (fast-forward dialogue)
+            Backlog (history of recent text)
+            Save / Load / Q.Save / Q.Load (UI elements, placeholders are okay for now)
+            Options (placeholder for future settings)
+            Quit (return to main menu or confirm close in a browser)
 
     Branching & State
-        Implement branching logic (choices that lead to different scenes).
-        Introduce a global state container (Redux, React Context, or Zustand) to manage variables/flags.
+        Implement branching logic where choices lead to different scenes.
+        Introduce a global state container (Redux/Context/Zustand) to manage flags (e.g., hasKey = true).
 
-    Save/Load Framework (Skeleton)
-        Outline how save data will be structured (JSON representation of current scene, flags, etc.).
-        Provide minimal functionality for saving/loading from memory or local storage (does not need final UI polish yet).
+    Skeleton Save/Load
+        Outline how saving/loading works (in-memory or basic local storage).
+        Provide minimal UI for saving/loading states.
+
+    AI-Friendly Markup
+        Use stable classes/IDs or data-testid attributes for menu buttons.
+        Keep layout consistent so AI can parse screenshots or locate UI elements via DOM queries.
 
 Deliverables
 
-    Dialogue Box with Speaker Name
-    Quick Menu featuring auto, skip, backlog, save, load, options, and quit buttons
-    Branching System: Scenes can branch based on user choices
-    Global State: A store that handles flags (e.g., hasKey, relationshipPoints)
-    Basic Save/Load Stubs: Possibly local storage or in-memory storage for now
+    Dialogue Box + Speaker Name
+    Quick Menu (auto, skip, backlog, save/load, etc.)
+    Basic Branching & Global State
+    Skeleton Save/Load
+    DOM Consistency for AI-driven testing
 
 Testing & Verification
 
-    Manual Testing
-        Start game in a browser, confirm that branching choices appear and lead to the correct subsequent scenes.
-        Click each button in the Quick Menu (auto, skip, backlog, etc.) to confirm they work or open a placeholder.
-    AI Testing
-        The AI agent can systematically click through choices to confirm the correct scene transitions.
-        Verify each button has consistent selectors and triggers the expected action.
+    Manual: The developer can click each Quick Menu button, confirm basic functionality (or placeholders).
+    AI: The AI agent can systematically click through all choices, verifying the correct scene transitions.
 
 Phase 3: Core Features Expansion & Debug Tools
 Goals
 
-    Full Save/Load Implementation
-        Complete the UI for Save/Load.
-        Allow multiple save slots, each storing scene ID, current line index, and relevant flags.
-        Implement autosave at key events (scene transitions or important choices).
+    Fully Functional Save/Load
+        Multiple save slots, overwrite confirmations.
+        Autosave triggers at key events (scene transitions or major choices).
 
     Backlog/History
-        A dedicated component or modal showing recent lines and speakers.
-        Ability to scroll through the backlog.
-        Possibly add re-voicing or re-display of text if needed (optional).
+        A scrollable panel or modal showing recent dialogues and speakers.
+        (Optional) Replay voice lines if you plan on voice-overs.
 
-    Dev Console / Debug Overlay
-        A hidden or toggleable overlay with commands:
-            Jump to any scene.
-            Set/unset flags manually.
-            Display logs of scene transitions, error messages, etc.
+    Debug/Dev Console
+        A hidden overlay or panel for developers and testers:
+            Jump to a specific scene
+            Set or unset certain flags
+            View logs of scene transitions or errors
 
-    Improved Transitions & Animations
-        Add simple fade or slide animations for scene changes, dialogue transitions, or sprite changes.
+    Scene Transitions & Animations
+        Fade or slide transitions for scene changes.
+        Basic animations for sprites or UI if needed.
 
 Deliverables
 
-    Functional Save/Load System: UI to select a slot, confirm overwriting, load existing data.
-    Backlog / Log: Working history of dialogues.
-    Debug Overlay: Developer-only commands for quick testing.
-    Basic Animations (fade in/out) for scene/sprite transitions.
+    Save/Load System: Reliable, user-friendly UI for saving/loading.
+    Backlog: A functioning dialog history screen.
+    Debug Console: In-game or dev-only overlay for QA.
+    Scene/Sprite Animations: Simple fade, slide, or crossfade effects.
 
 Testing & Verification
 
-    Manual Testing
-        Save at mid-dialogue, reload, confirm the game state is restored accurately.
-        Open the backlog, review recent lines, confirm they match the displayed text.
-        Use debug commands to jump between scenes, observe if flags and dialogues update properly.
-    AI Testing
-        The AI agent can systematically test the save/load flow by saving, reloading, and verifying the correct text displays.
-        The AI can open the backlog and confirm the displayed text matches recent lines.
+    Manual:
+        Save mid-dialogue, reload, confirm the same line is displayed.
+        Open backlog, check if dialogues are correctly logged.
+        Use debug console to jump around and set flags.
+    AI:
+        Automated tests that save, load, and confirm the correct content is displayed afterward.
+        Check transitions visually or by DOM changes (depending on the AI’s capabilities).
 
-Phase 4: Localization & Placeholder Asset Integration
+Phase 4: Localization & Placeholder Assets
 Goals
 
-    Localization System
-        Introduce (or finalize) react-i18next (or a similar library).
-        Store text in external resource files for English, Russian, Chinese, Japanese, Korean, etc.
-        Implement runtime language switching (e.g., a dropdown in the Options menu).
+    Localization Integration
+        Implement a library like react-i18next or a custom solution.
+        Store text in external locale files (English, Russian, Chinese, Japanese, Korean).
+
+    Runtime Language Switching
+        Let the user select the language from the Options menu.
+        Ensure text updates automatically (UI labels, dialogues).
 
     Placeholder-Friendliness
-        Ensure your engine can handle missing images or voice lines gracefully (display default placeholders if unavailable).
-        Confirm no crashes or UI breakage if an asset is absent.
+        Confirm that missing images (backgrounds, sprites) or audio lines show placeholders instead of crashing.
+        Provide default fallback visuals (“Missing Asset” or blank) if no file is found.
 
-    AI & Performance Checks
-        Refine DOM structure to ensure stable selectors for AI-based visual checks.
-        Optimize any slow or redundant rendering that becomes apparent with more data.
+    Refine AI Testing Hooks
+        Validate that language changes cause predictable DOM updates.
+        Keep IDs or classes consistent across languages.
 
 Deliverables
 
-    Multi-language UI & dialogs: The user can switch languages, seeing all text updated.
-    Robust Asset Loading: Engine does not crash if a sprite or voice line is missing; it shows a placeholder or no image.
-    Performance Tweaks (if needed): Simple caching or memoization for repeated data lookups.
+    Multi-Language UI: Dialogue and menu text switchable at runtime.
+    Placeholder Handling: Graceful fallback for missing art or audio.
+    Optimized AI Environment: Clear selectors and stable layout for cross-language testing.
 
 Testing & Verification
 
-    Manual Testing
-        Switch languages mid-game and confirm that both UI labels (e.g., “Skip”, “Backlog”) and dialog text are localized.
-        Insert random missing image references in the script to ensure placeholders appear instead of causing errors.
-    AI Testing
-        Cycle through each language and have the AI confirm the UI text changes appropriately (the AI might parse screenshots or check DOM text).
-        Check performance under multiple branches and rapid scene transitions.
+    Manual:
+        Switch languages mid-game; check for correct translations in dialogue and menu.
+        Insert a missing sprite reference, confirm that a placeholder appears.
+    AI:
+        Cycle through languages, verifying text changes or screenshot differences.
+        Attempt to load multiple scenes with placeholders to confirm no breakage.
 
-Phase 5: Final Polish, Steam Achievements & Release Readiness
+Phase 5: Final Polish (Voice, Art, Achievements, Gallery)
 Goals
 
-    Final Asset Integration
-        Replace placeholder images with final character art, backgrounds, CG scenes, etc.
-        Add voice lines or background music if planned, hooking into the audio system.
+    Asset Integration
+        Replace placeholder art and backgrounds with final images.
+        Add voice lines or music if planned, hooking them into dialogues.
 
-    Steamworks Integration (Optional)
-        If releasing on Steam, wrap your build with Electron or a similar solution.
-        Use the Steamworks SDK to define achievements and associate them with flags or scenes in the script.
-        Add achievement notifications (in-game popups or rely on the Steam overlay).
+    Steam Achievements (Optional)
+        If distributing on Steam, wrap with Electron or a native solution.
+        Use the Steamworks SDK to tie story events/flags to achievements.
+
+    Gallery / Extras Feature
+        Implement a Gallery accessible from the main menu or an in-game “Extras” screen.
+        Each CG (or music track, if applicable) is tied to a story event or flag that unlocks it.
+        Show locked CGs as silhouettes or placeholders until unlocked.
+        Clicking a thumbnail opens a full-size image (or plays a track).
 
     Advanced AI/QA Testing
-        Full coverage tests: The AI agent attempts every branch or uses a “fast-forward” mode to traverse the entire script.
-        Check achievements unlock at correct times, verify no missing references or script errors remain.
-
-    Optimization & Bug Fixes
-        Address any lingering layout or performance concerns.
-        Remove or hide developer overlays in production if desired (or keep them accessible via debug keys).
+        The AI tests the entire script, ensuring all achievements (if any) and all CGs can be unlocked properly.
+        Validate that final art/audio assets load correctly and do not break performance.
 
 Deliverables
 
-    Complete Visual Novel Build: Character sprites, backgrounds, audio, final UI polish.
-    Steam Achievements (if required): Achievements properly trigger and appear in users’ Steam profiles.
-    Staging/Release Candidate: A stable version for final QA checks.
+    Complete Asset Pipeline: Final sprites, backgrounds, CGs, music, voice lines integrated.
+    Steam Achievements (if applicable): Fully functional unlocks and notifications.
+    Gallery: Functional CG/music extras menu, with locked/unlocked states.
+    Thorough AI Testing: Coverage of all story routes, CG unlock conditions, achievement triggers.
 
 Testing & Verification
 
-    Full AI Testing
-        The AI agent systematically covers all routes, logs achievements, and screens for errors.
-        Checks for final UI consistency (any leftover placeholder text or UI elements?).
-    Manual QA & Beta
-        Human testers do a thorough playthrough of all routes, focusing on narrative flow, achievement triggers, and language correctness.
+    Manual:
+        Developers or QA testers verify each route, unlock CGs, and check achievements.
+        Confirm placeholders only remain where final assets are intentionally missing (if any).
+    AI:
+        Automated playthroughs that branch into all endings or flags, capturing the final CG unlock states.
+        Check achievements triggers and potential performance issues with large final assets.
 
-Phase 6: Launch & Post-Launch Support
+Phase 6: Launch & Post-Launch
 Goals
 
-    Launch Preparations
-        Minify and bundle the production build for web deployment.
-        If going to Steam, finalize store listing, achievements, and build distribution setup.
+    Production Build & Optimization
+        Minify, bundle, and optimize images/audio for the final web release or Electron build.
+        Address any performance bottlenecks (large assets, unoptimized transitions).
 
-    Post-Launch Bug Fixes & Updates
-        Triage any new bugs or user requests.
-        If needed, push incremental patches or small content updates.
+    Final QA & Bug Fixes
+        Last round of tests for narrative consistency, UI alignment, and stable frame rates.
+        Patch any leftover issues discovered during AI or manual testing.
 
-    Planning for Expansions / DLC
-        If expansions or DLC are planned, outline the data approach (new scenes, new assets) and how they integrate with the existing code.
+    Release & Post-Launch Support
+        Deploy the web build or publish on Steam (or both).
+        Gather user feedback, fix critical post-launch bugs quickly.
+        Plan for expansions or DLC if applicable.
 
 Deliverables
 
-    Live Production Build: A web version (hosted online) and/or an Electron build (for Steam/desktop).
-    Documentation & Handover:
-        Updated README on how to add or modify scenes, localize text, add new assets, or debug.
-        Any post-launch roadmap or DLC planning materials.
+    Release Candidate Build: Web or Electron (or both), ready for distribution.
+    Documentation: Updated README and usage guide for adding new scenes, CGs, or translations.
+    Post-Launch Strategy: If expansions or DLC are planned, outline how new content can be integrated with minimal code changes.
 
 Testing & Verification
 
-    Live Environment Check
-        Ensure the web version loads quickly, assets are properly referenced, and achievements (if applicable) function in production.
-    Feedback Loop
-        Gather user/AI testing feedback, fix critical issues promptly.
+    Live Environment Testing:
+        Confirm the final product runs smoothly in real-user scenarios.
+        If using Steam, confirm achievements appear properly on user profiles.
+    Post-Launch Monitoring:
+        Gather analytics or feedback (optional).
+        Schedule patches or updates as needed.
 
 Summary
 
-This full implementation plan ensures that your React-based Visual Novel Engine:
+By following these six phases, you will:
 
-    Establishes a solid core in early phases (data-driven approach, minimal UI).
-    Implements standard VN features (auto, skip, backlog, quick save/load) by Phase 2, aligning with the reference screenshot.
-    Adds debugging, localization, placeholders, and essential polish in mid-phases.
-    Finalizes assets and Steam achievements in the later phases, culminating in a stable release.
-    Prepares for post-launch updates or expansions via a well-documented codebase and architecture.
+    Establish a strong base (Phase 1) and core visual novel UI (Phase 2).
+    Expand features (save/load, backlog, debug) and refine them for AI-driven testing (Phase 3).
+    Add localization and ensure the engine handles placeholder assets (Phase 4).
+    Perform the final polish, integrating art, voice, achievements, and a Gallery (Phase 5).
+    Prepare for launch and post-launch support (Phase 6).
 
-By breaking the project into these discrete, testable phases, you guarantee clear deliverables, rapid feedback cycles, and seamless integration with AI-driven browser testing throughout development.
+This structure ensures modular, testable progress at each milestone—culminating in a complete, polished visual novel engine featuring a classic UI, branching story logic, multi-language support, achievements, and a CG gallery for players to revisit unlocked content.

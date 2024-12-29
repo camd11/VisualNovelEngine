@@ -1,0 +1,92 @@
+{
+  "title_screen": {
+    "start": "ゲーム開始",
+    "continue": "続きから",
+    "load": "ロード",
+    "options": "設定",
+    "gallery": "ギャラリー",
+    "quit": "終了"
+  },
+  "quick_menu": {
+    "auto": "オート",
+    "auto_on": "オート：オン",
+    "skip": "スキップ",
+    "skip_on": "スキップ：オン",
+    "backlog": "バックログ",
+    "backlog_on": "バックログ：オン",
+    "save": "セーブ",
+    "save_on": "セーブ：オン",
+    "options": "設定",
+    "options_on": "設定：オン",
+    "quit": "終了"
+  },
+  "save_load": {
+    "title": "セーブ/ロード",
+    "auto_save": "オートセーブ",
+    "empty_slot": "空きスロット",
+    "slot": "スロット {{number}}",
+    "save_to_slot": "スロット {{number}} にセーブ",
+    "description_placeholder": "セーブの説明（任意）",
+    "create_save": "セーブを作成",
+    "load": "ロード",
+    "delete": "削除",
+    "select": "選択"
+  },
+  "backlog": {
+    "title": "バックログ",
+    "scene": "シーン：{{name}}",
+    "current": "現在",
+    "jump": "ジャンプ",
+    "close": "閉じる"
+  },
+  "options": {
+    "title": "設定",
+    "text_settings": "テキスト設定",
+    "text_speed": "テキスト速度",
+    "text_speed_options": {
+      "slow": "遅い",
+      "normal": "普通",
+      "fast": "速い"
+    },
+    "auto_advance": "オート待ち時間",
+    "auto_advance_options": {
+      "3s": "3秒",
+      "5s": "5秒",
+      "7s": "7秒"
+    },
+    "display": "表示設定",
+    "window_opacity": "ウィンドウ透過度",
+    "opacity_options": {
+      "100": "100%",
+      "80": "80%",
+      "60": "60%"
+    },
+    "language": "言語",
+    "languages": {
+      "en": "English",
+      "ru": "Русский",
+      "zh": "中文",
+      "ja": "日本語",
+      "ko": "한국어"
+    }
+  },
+  "quit": {
+    "title": "タイトルに戻りますか？",
+    "message": "セーブされていない進行状況は失われます。",
+    "confirm": "終了",
+    "cancel": "キャンセル"
+  },
+  "debug": {
+    "title": "デバッグコンソール",
+    "scene_jump": "シーンジャンプ",
+    "scene_id": "シーンID",
+    "jump": "ジャンプ",
+    "flags": "ゲームフラグ",
+    "add_flag": "フラグ追加",
+    "flag_name": "フラグ名",
+    "flag_value": "フラグ値",
+    "set": "設定",
+    "delete": "削除",
+    "close": "閉じる"
+  }
+}
